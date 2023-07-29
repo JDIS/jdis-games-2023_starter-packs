@@ -64,8 +64,7 @@ class Player {
  *                    (en) Dictionary of players. Key: player name, Value: player.
  */
 class GameState {
-  constructor(frame, rows, cols, tick, players) {
-    this.frame = frame;
+  constructor(tick, rows, cols, players) {
     this.rows = rows;
     this.cols = cols;
     this.tick = tick;
@@ -125,7 +124,7 @@ class GameState {
       players[name] = new Player(name, [posX, posY], tickAlive, trail, region, teleportCooldown);
     }
 
-    return new GameState(frame, rows, cols, tick, players);
+    return new GameState(tick, rows, cols, players);
   }
 
   toString() {
