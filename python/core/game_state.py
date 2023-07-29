@@ -75,6 +75,7 @@ class GameState:
 
     rows: int
     cols: int
+    tick: int
     players: Dict[str, Player]
 
     @classmethod
