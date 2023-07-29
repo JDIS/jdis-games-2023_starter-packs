@@ -64,16 +64,17 @@ class Player {
  *                    (en) Dictionary of players. Key: player name, Value: player.
  */
 class GameState {
-  constructor(frame, rows, cols, players) {
+  constructor(frame, rows, cols, tick, players) {
     this.frame = frame;
     this.rows = rows;
     this.cols = cols;
+    this.tick = tick;
     this.players = players;
   }
 
   static deserialize(data) {
     let offset = 0;
-    const [rows, cols, frame] = new Uint32Array(data.slice(offset, offset + 12));
+    const [rows, cols, tick] = new Uint32Array(data.slice(offset, offset + 12));
     offset += 12;
 
     const decoder = new TextDecoder('unicode-1-1-utf-8');
@@ -124,7 +125,7 @@ class GameState {
       players[name] = new Player(name, [posX, posY], tickAlive, trail, region, teleportCooldown);
     }
 
-    return new GameState(frame, rows, cols, players);
+    return new GameState(frame, rows, cols, tick, players);
   }
 
   toString() {
